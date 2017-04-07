@@ -1,0 +1,3 @@
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles/edit_cache.dir
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles/rebuild_cache.dir
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles/ReFovea.dir

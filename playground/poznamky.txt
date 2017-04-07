@@ -1,0 +1,18 @@
+DIP:
+====
+- pracuje vzdy nad 1 obrazkom, blokove spracovanie sa da dorobit
+- interaktivne prostredie sa da dorobit - urob zatial konzolu
+- rob vzdy 1 sucast, nie viac naraz - testuj !!!
+- testovanie musi byt vzdy nad 5 a viac roznymi obrazkami
+- ide mi o opravu obrazku - ziadnu detekciu - detekcia bodov je len testovanie
+- ako opravit:
+-- zaklady:
+--- vylepsi kontrast - normalizacia histogramu (Saeed) + tonovacia krivka = LUT (Saeed)
+--- odstranenie sumu - medianovy filter? (Saeed)
+-- vytiahnutie podstatnych casti z obrazu:
+--- vylepsenie vlasocnic - Gaussian Matched Filter? (Saeed) - pouzite namiesto detekovania hran (kvoli slabemu kontrastu vlasocnic oproti pozadiu)
+---- 12 masiek/filtrov pre detekovanie v odstupe 15 stupnov (0, 15, 30, 45, 60, 75, 90, 105, 120, 135, 150, 165 - obratene netreba - detekujeme v oboch smeroch i.e. hore/dole, doprava/dolava, atd.)
+---- PREVED HLADANIE PO TOMTO KROKU - VYUZI DATA KTORE SU K DISPOZICII !!! - iteracia #1
+--- binarizacia - Local Enthropy Thresholding (Saeed) - odstranenie zbytocnych detailov (grayscale)
+--- stensenie - K3M Thinning (Saeed)
+-- najdenie bifurkacii, krizeni a koncovych bodov - pomocou mask (Saeed)

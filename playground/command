@@ -1,0 +1,1 @@
+g++ erod_dilat_tutor.cpp `pkg-config --cflags opencv` `pkg-config --libs opencv` -I /usr/include/opencv2 -L /usr/lib -o erod_dilat_tutor
