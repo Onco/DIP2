@@ -123,32 +123,32 @@ ReFovea/fast:
 	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/build
 .PHONY : ReFovea/fast
 
-detector.o: detector.cpp.o
+ReFovea.o: ReFovea.cpp.o
 
-.PHONY : detector.o
+.PHONY : ReFovea.o
 
 # target to build an object file
-detector.cpp.o:
-	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/detector.cpp.o
-.PHONY : detector.cpp.o
+ReFovea.cpp.o:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/ReFovea.cpp.o
+.PHONY : ReFovea.cpp.o
 
-detector.i: detector.cpp.i
+ReFovea.i: ReFovea.cpp.i
 
-.PHONY : detector.i
+.PHONY : ReFovea.i
 
 # target to preprocess a source file
-detector.cpp.i:
-	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/detector.cpp.i
-.PHONY : detector.cpp.i
+ReFovea.cpp.i:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/ReFovea.cpp.i
+.PHONY : ReFovea.cpp.i
 
-detector.s: detector.cpp.s
+ReFovea.s: ReFovea.cpp.s
 
-.PHONY : detector.s
+.PHONY : ReFovea.s
 
 # target to generate assembly for a file
-detector.cpp.s:
-	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/detector.cpp.s
-.PHONY : detector.cpp.s
+ReFovea.cpp.s:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/ReFovea.cpp.s
+.PHONY : ReFovea.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ReFovea"
-	@echo "... detector.o"
-	@echo "... detector.i"
-	@echo "... detector.s"
+	@echo "... ReFovea.o"
+	@echo "... ReFovea.i"
+	@echo "... ReFovea.s"
 .PHONY : help
 
 

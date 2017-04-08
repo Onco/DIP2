@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/detector.cpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp
 opencv2/imgproc/imgproc.hpp
 /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
@@ -14,5 +14,9 @@ opencv2/highgui/highgui.hpp
 math.h
 -
 iostream
+-
+string
+-
+unistd.h
 -
 

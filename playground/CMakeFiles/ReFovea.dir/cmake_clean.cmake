@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ReFovea.dir/detector.cpp.o"
+  "CMakeFiles/ReFovea.dir/ReFovea.cpp.o"
   "ReFovea.pdb"
   "ReFovea"
 )

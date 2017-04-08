@@ -4,7 +4,7 @@ project( ReFovea )
 find_package( OpenCV REQUIRED )
 
 include_directories(.)
-set( SRCS detector.cpp )
+set( SRCS ReFovea.cpp )
 
 add_executable( ReFovea ${SRCS} )
 target_link_libraries( ReFovea ${OpenCV_LIBS} )

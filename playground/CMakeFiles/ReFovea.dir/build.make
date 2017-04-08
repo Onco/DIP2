@@ -57,38 +57,38 @@ include CMakeFiles/ReFovea.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/ReFovea.dir/flags.make
 
-CMakeFiles/ReFovea.dir/detector.cpp.o: CMakeFiles/ReFovea.dir/flags.make
-CMakeFiles/ReFovea.dir/detector.cpp.o: detector.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ReFovea.dir/detector.cpp.o"
-	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ReFovea.dir/detector.cpp.o -c /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/detector.cpp
+CMakeFiles/ReFovea.dir/ReFovea.cpp.o: CMakeFiles/ReFovea.dir/flags.make
+CMakeFiles/ReFovea.dir/ReFovea.cpp.o: ReFovea.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/ReFovea.dir/ReFovea.cpp.o"
+	/usr/bin/c++   $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/ReFovea.dir/ReFovea.cpp.o -c /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp
 
-CMakeFiles/ReFovea.dir/detector.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ReFovea.dir/detector.cpp.i"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/detector.cpp > CMakeFiles/ReFovea.dir/detector.cpp.i
+CMakeFiles/ReFovea.dir/ReFovea.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ReFovea.dir/ReFovea.cpp.i"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp > CMakeFiles/ReFovea.dir/ReFovea.cpp.i
 
-CMakeFiles/ReFovea.dir/detector.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ReFovea.dir/detector.cpp.s"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/detector.cpp -o CMakeFiles/ReFovea.dir/detector.cpp.s
+CMakeFiles/ReFovea.dir/ReFovea.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ReFovea.dir/ReFovea.cpp.s"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp -o CMakeFiles/ReFovea.dir/ReFovea.cpp.s
 
-CMakeFiles/ReFovea.dir/detector.cpp.o.requires:
+CMakeFiles/ReFovea.dir/ReFovea.cpp.o.requires:
 
-.PHONY : CMakeFiles/ReFovea.dir/detector.cpp.o.requires
+.PHONY : CMakeFiles/ReFovea.dir/ReFovea.cpp.o.requires
 
-CMakeFiles/ReFovea.dir/detector.cpp.o.provides: CMakeFiles/ReFovea.dir/detector.cpp.o.requires
-	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/detector.cpp.o.provides.build
-.PHONY : CMakeFiles/ReFovea.dir/detector.cpp.o.provides
+CMakeFiles/ReFovea.dir/ReFovea.cpp.o.provides: CMakeFiles/ReFovea.dir/ReFovea.cpp.o.requires
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/ReFovea.cpp.o.provides.build
+.PHONY : CMakeFiles/ReFovea.dir/ReFovea.cpp.o.provides
 
-CMakeFiles/ReFovea.dir/detector.cpp.o.provides.build: CMakeFiles/ReFovea.dir/detector.cpp.o
+CMakeFiles/ReFovea.dir/ReFovea.cpp.o.provides.build: CMakeFiles/ReFovea.dir/ReFovea.cpp.o
 
 
 # Object files for target ReFovea
 ReFovea_OBJECTS = \
-"CMakeFiles/ReFovea.dir/detector.cpp.o"
+"CMakeFiles/ReFovea.dir/ReFovea.cpp.o"
 
 # External object files for target ReFovea
 ReFovea_EXTERNAL_OBJECTS =
 
-ReFovea: CMakeFiles/ReFovea.dir/detector.cpp.o
+ReFovea: CMakeFiles/ReFovea.dir/ReFovea.cpp.o
 ReFovea: CMakeFiles/ReFovea.dir/build.make
 ReFovea: /usr/lib/x86_64-linux-gnu/libopencv_videostab.so.2.4.9
 ReFovea: /usr/lib/x86_64-linux-gnu/libopencv_ts.so.2.4.9
@@ -117,7 +117,7 @@ CMakeFiles/ReFovea.dir/build: ReFovea
 
 .PHONY : CMakeFiles/ReFovea.dir/build
 
-CMakeFiles/ReFovea.dir/requires: CMakeFiles/ReFovea.dir/detector.cpp.o.requires
+CMakeFiles/ReFovea.dir/requires: CMakeFiles/ReFovea.dir/ReFovea.cpp.o.requires
 
 .PHONY : CMakeFiles/ReFovea.dir/requires
 

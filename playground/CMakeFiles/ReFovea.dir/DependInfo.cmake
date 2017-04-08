@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/detector.cpp" "/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles/ReFovea.dir/detector.cpp.o"
+  "/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp" "/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/CMakeFiles/ReFovea.dir/ReFovea.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
