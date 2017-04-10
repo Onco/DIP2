@@ -8,6 +8,7 @@
 
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
+#include "opencv2/photo/photo.hpp"
 //#include "highgui.h"
 //#include <stdlib.h> // malloc/free, atof, abs, exit, rand, srto* + definitions
 //#include <stdio.h> // printf, getc, fopen...
@@ -20,12 +21,24 @@ using namespace cv;
 using namespace std;
 
 Mat input; /**< Input image. */
+Mat view; /**< Matrix used for viewing. */
+Mat proc; /**< Processed image. */
+Ptr<TonemapDurand> tonemap; /**< Tonemap for contrast enhancement. */
+float gamma_coeff = 2.2f; /**< Gamma coefficient to be used for tonemap. */
 
 /** Prints out help.
  */
 void help(char* name) {
   cout<<"Usage: "<<name<<" image_file"<<endl;
   cout<<"Parameters:\n -h - prints help"<<endl;
+}
+
+void show(Mat &p) {
+  #ifndef VIEW
+  resize(p, view, Size(0, 0), 0.2, 0.2);
+  imshow("Output", view);
+  waitKey(0);
+  #endif
 }
 
 /** Main function.
@@ -73,14 +86,45 @@ int main( int argc, char** argv )
   vector<Mat> channels;
   split(input, channels);
   
+  #ifdef VIEW
   /// Create window
   namedWindow("Output", CV_WINDOW_AUTOSIZE);
-  imshow("Output", channels[0]);
-  waitKey(0);
-  imshow("Output", channels[1]);
-  waitKey(0);
-  imshow("Output", channels[2]);
-  waitKey(0);
+  for(int i=0; i<3; i++) {
+    switch(i) {
+      case 0: cout<<"Red"<<endl; break;
+      case 1: cout<<"Green"<<endl; break;
+      case 2: cout<<"Blue"<<endl; break;
+      default: cout<<"Error"<<endl;
+    }
+    show(channels(i));
+  }
+  #endif
+  
+  // set other (then G) channels to zero
+  proc = Mat(input.rows, input.cols, CV_8UC1);
+  int fromTo[] = {1,0};
+  mixChannels(&input, 1, &proc, 1, fromTo, 1);
+  
+  show(proc);
+  
+  // Preprocessing - move out to special function
+  
+  // normalize histogram
+  equalizeHist(proc, proc);
+  show(proc);
+  
+  // denoise image - use 2 cascade median filters with k=5
+  medianBlur(proc, proc, 5);
+  medianBlur(proc, proc, 5);
+  show(proc);
+  
+  // enhance contrast - tone curve = LUT?
+  tonemap = createTonemapDurand(gamma_coeff);
+  tonemap->process(proc, proc);
+  show(proc);
+  
+  // Vessel segmentation - using MF-FDOG
+  
   
   return 0;
 }
