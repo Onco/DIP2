@@ -6,7 +6,7 @@
  *  @version 0.1
  */
 
-#include "opencv2/imgproc/imgproc.hpp"
+#include "../opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/photo/photo.hpp"
 //#include "highgui.h"
@@ -17,13 +17,15 @@
 #include <string>
 #include <unistd.h> // getopt
 
+#include "MF-FDOG.h"
+
 using namespace cv;
 using namespace std;
 
 Mat input; /**< Input image. */
 Mat view; /**< Matrix used for viewing. */
 Mat proc; /**< Processed image. */
-Ptr<TonemapDurand> tonemap; /**< Tonemap for contrast enhancement. */
+Ptr<Tonemap> tonemap; /**< Tonemap for contrast enhancement. */
 float gamma_coeff = 2.2f; /**< Gamma coefficient to be used for tonemap. */
 
 /** Prints out help.
@@ -96,32 +98,47 @@ int main( int argc, char** argv )
       case 2: cout<<"Blue"<<endl; break;
       default: cout<<"Error"<<endl;
     }
-    show(channels(i));
+    show(channels[i]);
   }
   #endif
   
-  // set other (then G) channels to zero
-  proc = Mat(input.rows, input.cols, CV_8UC1);
-  int fromTo[] = {1,0};
-  mixChannels(&input, 1, &proc, 1, fromTo, 1);
+  // convert to YCrCb
+  cvtColor(input, input, COLOR_BGR2YCrCb);
   
-  show(proc);
+  // set other (then Y) channels to zero
+  split(input, channels);
+  
+  /*proc = Mat(input.rows, input.cols, CV_8UC1);
+  int fromTo[] = {0,0};
+  mixChannels(&input, 1, &proc, 1, fromTo, 1);*/
+  
+  cout<<"Grayscale..."<<endl;
+  show(channels[0]);
   
   // Preprocessing - move out to special function
   
   // normalize histogram
-  equalizeHist(proc, proc);
+  equalizeHist(channels[0], channels[0]);
+  cout<<"Normalized histogram..."<<endl;
+  show(channels[0]);
+  
+  merge(channels, proc);
+  cvtColor(proc, proc, COLOR_YCrCb2BGR);
+  cout<<"Enhanced color image..."<<endl;
   show(proc);
   
   // denoise image - use 2 cascade median filters with k=5
-  medianBlur(proc, proc, 5);
-  medianBlur(proc, proc, 5);
+  cout<<"Before blur..."<<endl;
+  medianBlur(proc, proc, 3);
+  medianBlur(proc, proc, 3);
+  cout<<"Median filters..."<<endl;
   show(proc);
   
   // enhance contrast - tone curve = LUT?
-  tonemap = createTonemapDurand(gamma_coeff);
+  /*tonemap = createTonemapDurand(gamma_coeff);
   tonemap->process(proc, proc);
-  show(proc);
+  cout<<"Tonemap..."<<endl;
+  show(proc);*/
   
   // Vessel segmentation - using MF-FDOG
   

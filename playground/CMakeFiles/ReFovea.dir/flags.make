@@ -6,5 +6,5 @@ CXX_FLAGS =
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/usr/include/opencv -I/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/. 
+CXX_INCLUDES = -I/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/. -isystem /usr/local/include -isystem /usr/local/include/opencv 
 
