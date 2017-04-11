@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.h
+opencv2/imgproc/imgproc.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/imgproc/imgproc.hpp
+opencv2/photo/photo.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/photo/photo.hpp
+math.h
+-
+
 /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp
-../opencv2/imgproc/imgproc.hpp
-/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/opencv2/imgproc/imgproc.hpp
+opencv2/imgproc/imgproc.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
 /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/highgui/highgui.hpp
 opencv2/photo/photo.hpp
@@ -21,6 +29,8 @@ string
 -
 unistd.h
 -
+MF-FDOG.h
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
