@@ -11,47 +11,56 @@
 #include <math.h> // log, sin, ...
 #include "MF-FDOG.h"
 
+MF_FDog::MF_FDog(int L, int s, int t=3) :
+	L(_L),
+	s(_s),
+	t(_t)
+{
+}
 
-/** Method calculating kernels for MF and FDoG.
- * @param argc Number of input arguments.
- * @param argv Pointer to the arguments.
- * @return Returns 0 on success, error code number otherwise.
- */
-void calcKernels(bool fdog) {
-	// dim_y = int(L)
-    // dim_x = 2 * int(t * s)
-    Mat arr = Mat::zeros(L, 2*t*s, )
+void MF_FDog::calcKernel(Mat& kern, bool fdog) {
+    kern = Mat::zeros(L, 2*t*s, CV_32F);
     
-    ctr_x = dim_x / 2 
-    ctr_y = int(dim_y / 2.)
+    double ts = t*s;
+    double p;
+    
+    double ss2 = 2 * s * s;
+    double gauss = 1.0 / (sqrt(2 * M_PI) * s);
+    if(fdog) {
+        gauss /= s*s;
+	}
 
-    # an un-natural way to set elements of the array
-    # to their x coordinate. 
-    # x's are actually columns, so the first dimension of the iterator is used
-    it = np.nditer(arr, flags=['multi_index'])
-    while not it.finished:
-        arr[it.multi_index] = it.multi_index[1] - ctr_x
-        it.iternext()
+    for(int i=0; i<kern.rows; i++) {
+		const int* R = kern.ptr<double>(i);
+		for(int j=0; j<kern.cols; j++) {
+			p = static_cast<double>(j) - ts;
+			R[j] = fdog?(-x * gauss * exp(-x * x / ss2)):(gauss * exp(-x * x / ss2));
+		}
+	}
 
-    two_sigma_sq = 2 * sigma * sigma
-    sqrt_w_pi_sigma = 1. / (sqrt(2 * pi) * sigma)
-    if not mf:
-        sqrt_w_pi_sigma = sqrt_w_pi_sigma / sigma ** 2
+    if(!fdog) {
+        kern = kern - kern.mean();
+	}
+       
+    flip(kern, kern, -1);
+}
 
-    @vectorize(['float32(float32)'], target='cpu')
-    def k_fun(x):
-        return sqrt_w_pi_sigma * exp(-x * x / two_sigma_sq)
+vector<Mat> MF_FDog::calcBank(Mat &kern, bool fdog, int size) {
+	calcKernel(kern, fdog);
+	
+    double step = 180 / size;
+    Point2f center = kern.size()/2;
+    double cur = 0;
+    vector<Mat>& kerns = fdog?kerns_fdog:kerns_mf;
+    Mat r, kern_tmp;
 
-    @vectorize(['float32(float32)'], target='cpu')
-    def k_fun_derivative(x):
-        return -x * sqrt_w_pi_sigma * exp(-x * x / two_sigma_sq)
-
-    if mf:
-        kernel = k_fun(arr)
-        kernel = kernel - kernel.mean()
-    else:
-       kernel = k_fun_derivative(arr)
-
-    # return the "convolution" kernel for filter2D
-    return cv2.flip(kernel, -1) 
+    for(int i=0; i<size; i++) {
+        cur += step;
+        r = getRotationMatrix2D(center, cur, 1.0);
+        kern_tmp = Mat(kern);
+        warpAffine(kern, kern_tmp, r, kern.size());
+        kerns.push_back(kern_tmp);
+	}
+	
+	return kerns;
 }

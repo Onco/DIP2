@@ -17,7 +17,7 @@
 #include <string>
 #include <unistd.h> // getopt
 
-#include "MF-FDOG.h"
+//#include "MF-FDOG.h"
 
 using namespace cv;
 using namespace std;
@@ -35,12 +35,42 @@ void help(char* name) {
   cout<<"Parameters:\n -h - prints help"<<endl;
 }
 
+/** Prints out help.
+ *  @param p Image to be shown. 
+ */
 void show(Mat &p) {
   #ifndef VIEW
   resize(p, view, Size(0, 0), 0.2, 0.2);
   imshow("Output", view);
   waitKey(0);
   #endif
+}
+
+/** Converts type of Mat object to a string.
+ *  @param type Integer representing type of Mat object.
+ *  @return Returns string containing type of Mat object.
+ */
+string type2str(int type) {
+  string r;
+
+  uchar depth = type & CV_MAT_DEPTH_MASK;
+  uchar chans = 1 + (type >> CV_CN_SHIFT);
+
+  switch ( depth ) {
+    case CV_8U:  r = "8U"; break;
+    case CV_8S:  r = "8S"; break;
+    case CV_16U: r = "16U"; break;
+    case CV_16S: r = "16S"; break;
+    case CV_32S: r = "32S"; break;
+    case CV_32F: r = "32F"; break;
+    case CV_64F: r = "64F"; break;
+    default:     r = "User"; break;
+  }
+
+  r += "C";
+  r += (chans+'0');
+
+  return r;
 }
 
 /** Main function.
@@ -73,6 +103,7 @@ int main( int argc, char** argv )
   
   // Load an image
   input = imread( argv[optind] );
+  cout<<"Type: "<<type2str(input.type())<<endl;
   
   if( input.empty() ) { 
     cerr<<"Input image is empty!"<<endl;
