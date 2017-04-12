@@ -6,61 +6,64 @@
  *  @version 0.1
  */
 
-#include "opencv2/imgproc/imgproc.hpp"
-#include "opencv2/photo/photo.hpp"
-#include <math.h> // log, sin, ...
 #include "MF-FDOG.h"
 
-MF_FDog::MF_FDog(int L, int s, int t=3) :
+MF_FDoG::MF_FDoG(int _L, int _s, int _t) :
 	L(_L),
 	s(_s),
 	t(_t)
 {
 }
 
-void MF_FDog::calcKernel(Mat& kern, bool fdog) {
-    kern = Mat::zeros(L, 2*t*s, CV_32F);
+void MF_FDoG::calcKernel(bool fdog) {
+	CV_Assert(s!=0);
+	CV_Assert(t>0);
+    Mat &kern = fdog?kern_fdog:kern_mf;
+	kern.create(L, 2*t*s, CV_32FC1);
     
-    double ts = t*s;
-    double p;
+    float ts = t*s;
     
-    double ss2 = 2 * s * s;
-    double gauss = 1.0 / (sqrt(2 * M_PI) * s);
+    float ss2 = 2 * s * s;
+    float gauss = 1.0 / (sqrt(2 * M_PI) * s);
     if(fdog) {
         gauss /= s*s;
 	}
 
+	float p;
     for(int i=0; i<kern.rows; i++) {
-		const int* R = kern.ptr<double>(i);
 		for(int j=0; j<kern.cols; j++) {
-			p = static_cast<double>(j) - ts;
-			R[j] = fdog?(-x * gauss * exp(-x * x / ss2)):(gauss * exp(-x * x / ss2));
+			p = static_cast<float>(j) - ts;
+			kern.at<float>(i,j) = fdog?(-p * gauss * exp(-p * p / ss2)):(gauss * exp(-p * p / ss2));
 		}
 	}
 
     if(!fdog) {
-        kern = kern - kern.mean();
+        kern = kern - mean(kern);
 	}
        
     flip(kern, kern, -1);
 }
 
-vector<Mat> MF_FDog::calcBank(Mat &kern, bool fdog, int size) {
-	calcKernel(kern, fdog);
+void MF_FDoG::calcBank(int size, bool fdog) {
+	calcKernel(fdog);
+	Mat &kern = fdog?kern_fdog:kern_mf;
+	cout<<kern<<endl;
+	vector<Mat> &kerns = fdog?kerns_fdog:kerns_mf;
 	
     double step = 180 / size;
-    Point2f center = kern.size()/2;
+    Point2f center = Point2f(kern.size[1]/2, kern.size[0]/2);
     double cur = 0;
-    vector<Mat>& kerns = fdog?kerns_fdog:kerns_mf;
     Mat r, kern_tmp;
 
     for(int i=0; i<size; i++) {
         cur += step;
         r = getRotationMatrix2D(center, cur, 1.0);
-        kern_tmp = Mat(kern);
         warpAffine(kern, kern_tmp, r, kern.size());
         kerns.push_back(kern_tmp);
 	}
-	
-	return kerns;
+}
+
+void MF_FDoG::calcBanks() {
+	calcBank(12, false);
+	calcBank(12, true);
 }

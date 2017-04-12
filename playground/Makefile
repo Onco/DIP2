@@ -123,6 +123,33 @@ ReFovea/fast:
 	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/build
 .PHONY : ReFovea/fast
 
+MF-FDOG.o: MF-FDOG.cpp.o
+
+.PHONY : MF-FDOG.o
+
+# target to build an object file
+MF-FDOG.cpp.o:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o
+.PHONY : MF-FDOG.cpp.o
+
+MF-FDOG.i: MF-FDOG.cpp.i
+
+.PHONY : MF-FDOG.i
+
+# target to preprocess a source file
+MF-FDOG.cpp.i:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/MF-FDOG.cpp.i
+.PHONY : MF-FDOG.cpp.i
+
+MF-FDOG.s: MF-FDOG.cpp.s
+
+.PHONY : MF-FDOG.s
+
+# target to generate assembly for a file
+MF-FDOG.cpp.s:
+	$(MAKE) -f CMakeFiles/ReFovea.dir/build.make CMakeFiles/ReFovea.dir/MF-FDOG.cpp.s
+.PHONY : MF-FDOG.cpp.s
+
 ReFovea.o: ReFovea.cpp.o
 
 .PHONY : ReFovea.o
@@ -159,6 +186,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... ReFovea"
+	@echo "... MF-FDOG.o"
+	@echo "... MF-FDOG.i"
+	@echo "... MF-FDOG.s"
 	@echo "... ReFovea.o"
 	@echo "... ReFovea.i"
 	@echo "... ReFovea.s"

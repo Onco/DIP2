@@ -9,10 +9,15 @@
 #ifndef MF_FDOG_H
 #define MF_FDOG_H
 
-
+#include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/photo/photo.hpp"
 #include <math.h> // log, sin, ...
+#include <vector>
+#include <iostream>
+
+using namespace cv;
+using namespace std;
 
 class MF_FDoG {
   public:
@@ -21,7 +26,7 @@ class MF_FDoG {
      *  @param s Variance of Gaussian kernels in banks.
      *  @param t Constant selecting whole Gaussian in kernels.
      */
-     MF_FDog(int _L, int _s, int _t=3);
+     MF_FDoG(int _L, int _s, int _t=3);
   
     /** Method applies kernel bank to input image and provides maximal response as result.
      *  @param src Reference to source image.
@@ -34,20 +39,23 @@ class MF_FDoG {
      */    
     void calcBanks();
 
-  private:
+
     /** Method calculating kernel bank for MF or FDoG.
      *  @param kern Reference to kernel to be used.
      *  @param fdog If true, FDoG kernel bank is computed, otherwise MF kernel bank is computed.
      *  @return Bank of kernels.
      */    
-    vector<Mat> calcBank(Mat &kern, bool fdog=false);
+    void calcBank(int size, bool fdog=false);
     
     /** Method calculating base kernel for MF or FDoG.
      *  @param fdog If true, kernel for first derivative of DoG. Otherwise, Gaussian matched filter is computed (default).
      *  @return Reference to computed kernel.
      */
-    void calcKernel(Mat& kern, bool fdog=false);
+    void calcKernel(bool fdog=false);
 
+    vector<Mat>& getKerns(bool fdog=false);
+
+  private:
     int L;    /**< Length of the neighborhood along the y-axis to smooth noise. */
     int s;  /**< Variance of the Gaussian. */
     int t;  /**< Constant, sigma scale to get to Gaussian width. */
@@ -57,6 +65,10 @@ class MF_FDoG {
     int mf_size;
     vector<Mat> kerns_fdog; /**< Kernel bank for FDoG Filter. */
     int fdog_size;
+};
+
+inline vector<Mat>& MF_FDoG::getKerns(bool fdog) {
+  return (fdog)?kerns_fdog:kerns_mf;
 }
 
 #endif /* End of MF_FDOG_H */

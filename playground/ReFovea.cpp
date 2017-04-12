@@ -6,6 +6,7 @@
  *  @version 0.1
  */
 
+#include "opencv2/core/core.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/photo/photo.hpp"
@@ -14,10 +15,11 @@
 //#include <stdio.h> // printf, getc, fopen...
 #include <math.h> // log, sin, ...
 #include <iostream> // cout, cin, ...
-#include <string>
 #include <unistd.h> // getopt
+#include <string>
+#include <vector>
 
-//#include "MF-FDOG.h"
+#include "MF-FDOG.h"
 
 using namespace cv;
 using namespace std;
@@ -25,6 +27,7 @@ using namespace std;
 Mat input; /**< Input image. */
 Mat view; /**< Matrix used for viewing. */
 Mat proc; /**< Processed image. */
+Mat im;
 Ptr<Tonemap> tonemap; /**< Tonemap for contrast enhancement. */
 float gamma_coeff = 2.2f; /**< Gamma coefficient to be used for tonemap. */
 
@@ -40,7 +43,7 @@ void help(char* name) {
  */
 void show(Mat &p) {
   #ifndef VIEW
-  resize(p, view, Size(0, 0), 0.2, 0.2);
+  resize(p, view, Size(0, 0), 0.1, 0.1);
   imshow("Output", view);
   waitKey(0);
   #endif
@@ -172,7 +175,17 @@ int main( int argc, char** argv )
   show(proc);*/
   
   // Vessel segmentation - using MF-FDOG
+  MF_FDoG mfg = MF_FDoG(15, 5);
+  mfg.calcBanks();
   
+  vector<Mat>& kernels = mfg.getKerns();
+  for(vector<Mat>::iterator it = kernels.begin(); it != kernels.end(); ++it) {
+	  Mat& x = *it;
+	  x *= 255;
+	  show(x);
+  }
+  
+  destroyAllWindows();
   
   return 0;
 }

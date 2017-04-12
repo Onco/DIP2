@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ReFovea.dir/ReFovea.cpp.o"
+  "CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o"
   "ReFovea.pdb"
   "ReFovea"
 )

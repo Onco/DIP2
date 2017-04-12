@@ -6,7 +6,27 @@
 
 #IncludeRegexTransform: 
 
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.cpp
+MF-FDOG.h
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.h
+
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.h
+opencv2/core/core.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/core/core.hpp
+opencv2/imgproc/imgproc.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/imgproc/imgproc.hpp
+opencv2/photo/photo.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/photo/photo.hpp
+math.h
+-
+vector
+-
+iostream
+-
+
 /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/ReFovea.cpp
+opencv2/core/core.hpp
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/core/core.hpp
 opencv2/imgproc/imgproc.hpp
 /home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/opencv2/imgproc/imgproc.hpp
 opencv2/highgui/highgui.hpp
@@ -17,10 +37,14 @@ math.h
 -
 iostream
 -
-string
--
 unistd.h
 -
+string
+-
+vector
+-
+MF-FDOG.h
+/home/onco/Plocha/Skool/Rok_2016_2017/src/DIP2/playground/MF-FDOG.h
 
 /usr/local/include/opencv/cxcore.h
 opencv2/core/core_c.h
@@ -93,6 +117,10 @@ opencv2/core/neon_utils.hpp
 /usr/local/include/opencv2/core/opencv2/core/neon_utils.hpp
 
 /usr/local/include/opencv2/core/bufferpool.hpp
+
+/usr/local/include/opencv2/core/core.hpp
+opencv2/core.hpp
+/usr/local/include/opencv2/core/opencv2/core.hpp
 
 /usr/local/include/opencv2/core/core_c.h
 opencv2/core/types_c.h
