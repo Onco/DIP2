@@ -43,7 +43,7 @@ void help(char* name) {
  */
 void show(Mat &p) {
   #ifndef VIEW
-  resize(p, view, Size(0, 0), 0.1, 0.1);
+  resize(p, view, Size(0, 0), 0.2, 0.2);
   imshow("Output", view);
   waitKey(0);
   #endif
@@ -161,7 +161,7 @@ int main( int argc, char** argv )
   cout<<"Enhanced color image..."<<endl;
   show(proc);
   
-  // denoise image - use 2 cascade median filters with k=5
+  // denoise image - use 2 cascade median filters with k=3
   cout<<"Before blur..."<<endl;
   medianBlur(proc, proc, 3);
   medianBlur(proc, proc, 3);
@@ -175,14 +175,20 @@ int main( int argc, char** argv )
   show(proc);*/
   
   // Vessel segmentation - using MF-FDOG
-  MF_FDoG mfg = MF_FDoG(15, 5);
+  MF_FDoG mfg = MF_FDoG(6, 2, 12);
   mfg.calcBanks();
   
   vector<Mat>& kernels = mfg.getKerns();
+  vector<Mat> responses;
+  Mat tmp_proc;
   for(vector<Mat>::iterator it = kernels.begin(); it != kernels.end(); ++it) {
 	  Mat& x = *it;
-	  x *= 255;
-	  show(x);
+	  filter2D(proc, tmp_proc, -1, x);
+	  responses.push_back(tmp_proc);
+  }
+  
+  for(vector<Mat>::iterator it = responses.begin(); it != responses.end(); ++it) {
+	  show(*it);
   }
   
   destroyAllWindows();

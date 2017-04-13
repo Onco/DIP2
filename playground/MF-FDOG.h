@@ -26,7 +26,7 @@ class MF_FDoG {
      *  @param s Variance of Gaussian kernels in banks.
      *  @param t Constant selecting whole Gaussian in kernels.
      */
-     MF_FDoG(int _L, int _s, int _t=3);
+     MF_FDoG(int _L, int _s, int _sz, int _t=3);
   
     /** Method applies kernel bank to input image and provides maximal response as result.
      *  @param src Reference to source image.
@@ -55,16 +55,15 @@ class MF_FDoG {
 
     vector<Mat>& getKerns(bool fdog=false);
 
-  private:
+  //private:
     int L;    /**< Length of the neighborhood along the y-axis to smooth noise. */
     int s;  /**< Variance of the Gaussian. */
     int t;  /**< Constant, sigma scale to get to Gaussian width. */
     Mat kern_mf;  /**< Base kernel for Gaussian Matched Filter. */
     Mat kern_fdog; /**< Base kernel for FDoG Filter. */
     vector<Mat> kerns_mf; /**< Kernel bank for Gaussian Matched Filter. */
-    int mf_size;
+    int sz;  /**< Size of kernel banks. */
     vector<Mat> kerns_fdog; /**< Kernel bank for FDoG Filter. */
-    int fdog_size;
 };
 
 inline vector<Mat>& MF_FDoG::getKerns(bool fdog) {
