@@ -69,6 +69,7 @@ CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/flann/sampling.
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/flann/saving.h
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/flann/timer.h
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/highgui.hpp
+CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/highgui/highgui.hpp
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/highgui/highgui_c.h
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/imgcodecs.hpp
 CMakeFiles/ReFovea.dir/MF-FDOG.cpp.o: /usr/local/include/opencv2/imgcodecs/imgcodecs_c.h
